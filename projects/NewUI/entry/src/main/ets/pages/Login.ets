@@ -1,6 +1,5 @@
-// @ts-check
-import font from '@ohos.font';
-
+import prompt from '@ohos.promptAction';
+import router from '@ohos.router';
 import CommonConstants from '../common/CommonConstants'
 
 @Extend(TextInput)
@@ -21,12 +20,53 @@ function lineStyle() {
   .backgroundColor($r('app.color.line_color'))
 }
 
+@Extend(Text)
+function textStyle() {
+  .fontColor($r('app.color.other_login_text_color'))
+  .fontSize($r('app.float.small_text_size'))
+  .fontWeight(FontWeight.Medium)
+}
+
 @Entry
 @Component
 struct Login {
+  @State isShowProgress: boolean = false;
+  @State account: string = "";
+  @State password: string = "";
+  private timeoutId: number = -1
 
-  otherLogin(_type: number) {
+  login(): void {
+    if (this.account === "" || this.password === "") {
+      prompt.showToast({
+        message: $r('app.string.input_empty_tips')
+      })
+    } else {
+      this.isShowProgress = true;
+      if (this.timeoutId === -1) {
+        this.timeoutId = setTimeout(() => {
+          this.isShowProgress = false;
+          this.timeoutId = -1;
+          router.replaceUrl({url: "pages/Main"})
+        }, CommonConstants.LOGIN_DELAY_TIME);
+      }
+    }
+  }
 
+  otherLogin(type: number): void {
+    switch (type) {
+      case 1: //todo: 登录方式一
+
+        break;
+      case 2: //todo: 登录方式二
+
+        break;
+      case 3: //todo: 登录方式三
+
+      break;
+
+      default:
+        break;
+    }
   }
 
   @Builder
@@ -72,18 +112,24 @@ struct Login {
         TextInput( {placeholder: $r('app.string.account')} )
           .type(InputType.Number)
           .inputStyle()
+          .onChange((value: string) => {
+            this.account = value;
+          })
         Line().lineStyle()
 
         TextInput( {placeholder: $r('app.string.password')} )
           .type(InputType.Password)
           .inputStyle()
+          .onChange((value: string) => {
+            this.password = value;
+          })
         Line().lineStyle()
 
         Row( {space: CommonConstants.COMMON_SPACE} ) {
           Text($r('app.string.message_login'))
-            .fontColor($r('app.color.login_blue_text_color'))
+            .textStyle()
           Text($r('app.string.forgot_password'))
-            .fontColor($r('app.color.login_blue_text_color'))
+            .textStyle()
         }
         .justifyContent(FlexAlign.SpaceBetween)
         .width(CommonConstants.FULL_PARENT)
@@ -95,7 +141,6 @@ struct Login {
         top: $r("app.float.input_margin_top"),
       } )
 
-
       // 登录、注册按钮
       Column() {
         Button($r('app.string.login'))
@@ -106,9 +151,22 @@ struct Login {
             top: $r('app.float.login_button_margin_top'),
             bottom: $r('app.float.login_button_margin_bottom')
           } )
+          .onClick(() => {
+            this.login();
+          })
 
         Text($r('app.string.register_account'))
           .fontColor($r('app.color.login_button_color'))
+      }
+
+      if (this.isShowProgress) {
+        LoadingProgress()
+          .color($r('app.color.loading_color'))
+          .width($r('app.float.login_progress_size'))
+          .height($r('app.float.login_progress_size'))
+          .margin( {
+            top: $r('app.float.login_progress_margin_top')
+          })
       }
 
       // 其他登录方式
