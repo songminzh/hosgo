@@ -1,6 +1,17 @@
 
 import CommonConstants from '../common/CommonConstants'
 import HomeView from '../view/HomeView';
+import SettingView from '../view/SettingView';
+
+@Extend(TabContent)
+function TabContentStyle() {
+  .padding({
+    left: $r('app.float.mainPage_padding'),
+    right: $r('app.float.mainPage_padding')
+  })
+  .backgroundColor($r('app.color.mainPage_backgroundColor'))
+}
+
 @Entry
 @Component
 struct Mian {
@@ -31,12 +42,19 @@ struct Mian {
       barPosition: BarPosition.End,
       controller: this.tabsController
     }) {
+      // 首页
       TabContent() {
         HomeView()
       }
-      .padding({ left: $r('app.float.mainPage_padding'), right: $r('app.float.mainPage_padding')})
-      .backgroundColor($r('app.color.mainPage_backgroundColor'))
+      .TabContentStyle()
       .tabBar(this.TabBuilder(CommonConstants.HOME_TITLE, CommonConstants.HOME_TAB_INDEX, $r('app.media.home_selected'), $r('app.media.home_normal')))
+
+      // 我的
+      TabContent() {
+        SettingView()
+      }
+      .TabContentStyle()
+      .tabBar(this.TabBuilder(CommonConstants.MINE_TITLE, CommonConstants.MINE_TAB_INDEX, $r('app.media.mine_selected'), $r('app.media.mine_normal')))
     }
     .width(CommonConstants.FULL_PARENT)
     .backgroundColor(Color.White)
