@@ -16,16 +16,21 @@ export default struct CustomDialogWidget {
   build() {
     Column() {
       // 标题
-      Text()
+      Text($r('app.string.title_hobbies'))
+        .fontSize($r('app.float.title_hobbies_size'))
+        .fontColor($r('app.color.custom_color'))
+
+
 
       // 选项列表
       List() {}
 
       // 操作按钮
       Row() {
-        Button()
+        Button($r('app.string.cancel_button'))
 
-        Button()
+
+        Button($r('app.string.definite_button'))
       }
     }
   }

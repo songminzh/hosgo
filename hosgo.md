@@ -58,15 +58,17 @@ ArkTS是HarmonyOS优选的主力应用开发语言。
 
 
 ### 组件状态管理装饰器
-用来管理组件中的状态，它们分别是：@State、@Prop、@Link。
+用来管理组件中的状态，它们分别是：@State、@Prop、@Link、@Watch、@Builder。
 
-* @State装饰的变量是组件内部的状态数据，当这些状态数据被修改时，将会调用所在组件的build方法进行UI刷新。
+* @State：组件内状态。
 
-* @Prop与@State有相同的语义，但初始化方式不同。@Prop装饰的变量必须使用其父组件提供的@State变量进行初始化，允许组件内部修改@Prop变量，但更改不会通知给父组件，即@Prop属于单向数据绑定。
+* @Prop：父子单向同步。
 
-* @Link装饰的变量可以和父组件的@State变量建立双向数据绑定，需要注意的是：@Link变量不能在组件内部进行初始化。
+* @Link：父子双向同步。
 
-* @Builder装饰的方法用于定义组件的声明式UI描述，在一个自定义组件内快速生成多个布局内容。
+* @Watch：观察者模式。
+
+* @Builder：组件内代码复用。
 
 ### 声明式UI特征
 * 声明式描述
@@ -201,3 +203,19 @@ ForEach(
 * 左侧：BarPosition.Start，vertical属性方法设置为true。
 * 底部：BarPosition.End，vertical属性方法设置为false。
 * 右侧：BarPosition.End，vertical属性方法设置为true。
+
+### 弹窗组件
+* AlertDialog
+* DatePickerDialog
+* TextPickerDialog
+* CustomDialog
+
+
+
+
+
+文章：  
+1. 【HarmonyOS NEXT】 基础笔记
+2. 【HarmonyOS NEXT】实现一个自定义弹窗
+3. 【HarmonyOS NEXT】实现OCR
+

@@ -3,7 +3,7 @@ import ItemData from '../viewmodel/ItemData'
 
 @Component
 export default struct SettingCell {
-  item: ItemData;
+  item: ItemData = new ItemData($r('app.string.mainPage_tabTitles_mine'), $r('app.media.home_selected'));
 
   build() {
     Row() {
