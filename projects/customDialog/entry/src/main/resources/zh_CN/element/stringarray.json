@@ -4,10 +4,28 @@
       "name": "sex_array",
       "value": [
         {
-          "value": "男"
+          "value": "巴塞罗那"
         },
         {
-          "value": "女"
+          "value": "曼城"
+        },
+        {
+          "value": "利物浦"
+        },
+        {
+          "value": "迈阿密国际"
+        },
+        {
+          "value": "拜仁慕尼黑"
+        },
+        {
+          "value": "AC米兰"
+        },
+        {
+          "value": "多特蒙德"
+        },
+        {
+          "value": "阿贾克斯"
         }
       ]
     },

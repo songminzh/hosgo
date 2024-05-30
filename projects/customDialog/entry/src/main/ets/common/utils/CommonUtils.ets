@@ -4,42 +4,16 @@ import Logger from './Logger'
 
 export class CommonUtils {
   /**
-   * Alert dialog
-   * @param context UIAbilityContext
-   */
-  alertDialog(context: common.UIAbilityContext) {
-    AlertDialog.show({
-      message: $r('app.string.alert_dialog_message'),
-      alignment: DialogAlignment.Bottom,
-      offset: {
-        dx: 0,
-        dy: CommonConstants.DY_OFFSET
-      },
-      primaryButton: {
-        value: $r('app.string.cancel_button'),
-        action: () => {
-          Logger.info(CommonConstants.TAG_COMMON_UTILS, 'Callback cancel button is clicked')
-        }
-      },
-      secondaryButton: {
-        value: $r('app.string.definite_button'),
-        action: () => {
-          context.terminateSelf()
-          Logger.info(CommonConstants.TAG_COMMON_UTILS, 'Callback define button is clicked')
-        }
-      }
-    });
-  }
-
-  /**
    * Common alert dialog
-   * @param msg
-   * @param context
-   * @param primaryCallback
-   * @param secondCallback
+   * @param title 标题
+   * @param msg 提示信息
+   * @param context 需要保存状态的UIAbility所对应的context
+   * @param primaryCallback 第一个按钮点击事件的回调
+   * @param secondCallback 第二个按钮点击事件的回调
    */
-  commonAlertDialog(msg: ResourceStr, context: common.UIAbilityContext, primaryCallback: Function, secondCallback: Function) {
+  commonAlertDialog(title: ResourceStr, msg: ResourceStr, context: common.UIAbilityContext, primaryCallback: Function, secondCallback: Function) {
     AlertDialog.show({
+      title: title,
       message: msg,
       alignment: DialogAlignment.Bottom,
       offset: {
@@ -62,9 +36,11 @@ export class CommonUtils {
     });
   }
 
+
+
   /**
    * Date picker dialog
-   * @param dateCallback
+   * @param dateCallback 确认选中日期回调
    */
   datePickerDialog(dateCallback: Function) {
     DatePickerDialog.show({
@@ -83,21 +59,9 @@ export class CommonUtils {
   }
 
   /**
-   * Get default selected date
-   *
-   * @param {number} year year
-   * @param {number} month month
-   * @param {number} day day
-   * @returns {string} return selected date
-   */
-  getSelectedDateValue(year: number, month: number, day: number): string {
-    return `${year}${CommonConstants.DATE_YEAR}`+`${month}${CommonConstants.DATE_MONTH}`+`${day}${CommonConstants.DATE_DAY}`;
-  }
-
-  /**
    * Text picker dialog
-   * @param items
-   * @param textCallback
+   * @param items 选项
+   * @param textCallback 选中返回
    */
   textPickerDialog(items: Resource, textCallback: Function) {
     if (this.isEmpty(items)) {
@@ -116,7 +80,19 @@ export class CommonUtils {
         Logger.info(CommonConstants.TAG_COMMON_UTILS, 'TextPickerDialog canceled')
       }
     });
+  }
 
+
+  /**
+   * Get default selected date
+   *
+   * @param {number} year year
+   * @param {number} month month
+   * @param {number} day day
+   * @returns {string} return selected date
+   */
+  getSelectedDateValue(year: number, month: number, day: number): string {
+    return `${year}${CommonConstants.DATE_YEAR}`+`${month}${CommonConstants.DATE_MONTH}`+`${day}${CommonConstants.DATE_DAY}`;
   }
 
   /**
@@ -129,6 +105,11 @@ export class CommonUtils {
     return obj === undefined || obj === null || obj === '';
   }
 
+  /**
+   * Check if array is empty
+   * @param arr array
+   * @returns {boolean} result
+   */
   isEmptyArr(arr: Array<object | string>): boolean {
     return this.isEmpty(arr) || arr.length === 0;
   }
@@ -136,4 +117,5 @@ export class CommonUtils {
 }
 
 export default new CommonUtils();
+
 

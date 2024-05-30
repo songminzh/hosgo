@@ -64,11 +64,10 @@ struct HomePage {
         })
         .onClick(() => {
           let context = getContext(this) as common.UIAbilityContext;
-          CommonUtils.alertDialog(context);
-          CommonUtils.commonAlertDialog($r('app.string.alert_dialog_message'), context, () => {
+          CommonUtils.commonAlertDialog("提示", $r('app.string.alert_dialog_message'), context, () => {
             // 取消
           }, () => {
-          //   确认
+            //   确认
           });
         })
       Image($r('app.media.ic_avatar'))
