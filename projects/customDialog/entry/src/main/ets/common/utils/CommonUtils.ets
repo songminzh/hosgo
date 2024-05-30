@@ -83,6 +83,18 @@ export class CommonUtils {
   }
 
   /**
+   * Get default selected date
+   *
+   * @param {number} year year
+   * @param {number} month month
+   * @param {number} day day
+   * @returns {string} return selected date
+   */
+  getSelectedDateValue(year: number, month: number, day: number): string {
+    return `${year}${CommonConstants.DATE_YEAR}`+`${month}${CommonConstants.DATE_MONTH}`+`${day}${CommonConstants.DATE_DAY}`;
+  }
+
+  /**
    * Text picker dialog
    * @param items
    * @param textCallback

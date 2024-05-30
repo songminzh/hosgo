@@ -6,6 +6,7 @@ export default struct TextCommonWidget {
   @Link content: string;
   private textImage?: Resource;
   private title?: Resource;
+  onItemClick = () => {};
 
   build() {
     Row() {
@@ -38,6 +39,6 @@ export default struct TextCommonWidget {
     .backgroundColor(Color.White)
     .width(CommonConstants.COMMON_DIALOG_WIDTH)
     .height($r('app.float.row_height'))
-    .onClick(() => {})
+    .onClick(this.onItemClick)
   }
 }
