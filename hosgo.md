@@ -1,32 +1,9 @@
 [TOC]
 
-🔔 欢迎您参加掘金 X 华为鸿蒙有奖征文活动，期待大们用HarmonyOS NEXT实现自己创意的过程
-
-🙋投稿流程：
-1.注册华为平台账号：【https://id1.cloud.huawei.com/AMW/portal/home.html】
-2.获取HarmonyOS NEXT学习体验机会，实现您的创意过程
-HarmonyOS NEXT定向招募申请链接🔗：
-https://docs.qq.com/doc/DZHhHTEJEaGh0S05w
-申请渠道填写：掘金征文活动
-填写错误将会导致审核不通过噢
-申请链接禁止转发🈲️
-申请审核周期：3个工作日内
-
-3.结合自己的开发体验在稀土掘金官网 juejin.cn/ 发表文章，分类选择不限，标签添加“HarmonyOS”，创作话题选择“华为鸿蒙有奖征文”，且在文章首或尾句带下“本文正在参加华为鸿蒙有奖征文征文活动”即可
-参与活动用户有机会参加HarmonyOS 竞赛
-
-🎁获奖同学有机会获得价值¥3699元2024稀土掘金开发者大会线下2天通票4张、限量稀土掘金 Touch系列「能量加满」无线充电座、限量稀土掘金 x A-SOUL 周边等
-
-🔍详情戳文章了解：
-https://juejin.cn/post/7366945260792168486
-
-check
-
-https://developer.huawei.com/consumer/cn/doc/harmonyos-guides/ide-run-emulator-0000001582636200#section147575117514
 
 # HarmonyOS Development
 
-## ArkTS语言
+## ArkTS语言概述
 ArkTS是HarmonyOS优选的主力应用开发语言。
 
 ### 演进
@@ -74,7 +51,7 @@ ArkTS是HarmonyOS优选的主力应用开发语言。
 * 声明式描述
 * 状态驱动视图更新
 
-## UIAbility
+## 应用程序框架——UIAbility
 > 应用程序入口 & 系统调度单元
 
 **一个App可以包含一个或多个UIAbility**
@@ -143,6 +120,7 @@ Router.back( { url: 'pages/Home' } )
 * TextInput：单行文本输入框
 * Button：按钮
 * LoadingProgress：加载
+……
 
 可根据不同需求灵活选用UI控件，并设置其属性，实现预期性效果。
 
@@ -208,7 +186,19 @@ ForEach(
 * AlertDialog
 * DatePickerDialog
 * TextPickerDialog
-* CustomDialog
+* TimePickerDialog
+* CustomDialog(自定义弹框)
+
+## 网络
+
+## 数据持久化
+
+## 动画
+
+## 
+
+
+
 
 
 
