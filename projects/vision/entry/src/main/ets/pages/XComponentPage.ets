@@ -5,7 +5,6 @@ import display from '@ohos.display';
 import { image } from '@kit.ImageKit';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import ImageOCRUtil from '../common/utils/ImageOCRUtil';
-import { ImageOCRUtil } from '../common/utils/ImageOCRUtil';
 
 
 @Entry
@@ -181,7 +180,6 @@ struct XComponentPage {
         .width("100%")
         .height(display.getDefaultDisplaySync().width * 9 / 16)
 
-
       Button("开始截帧").onClick(() => {
         console.log("用户点击")
 
@@ -192,6 +190,5 @@ struct XComponentPage {
         console.log(JSON.stringify(this))
       })
     }
-
   }
 }
