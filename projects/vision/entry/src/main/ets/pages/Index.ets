@@ -1,9 +1,8 @@
 import { image } from '@kit.ImageKit'
-import { fileIo, picker } from '@kit.CoreFileKit';
-import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import fileIO from '@ohos.fileio';
-import { textRecognition } from '@kit.CoreVisionKit';
+import ImageOCRUtil from '../common/utils/ImageOCRUtil';
+import CommonUtils from '../common/utils/CommonUtils';
+import { fileIo } from '@kit.CoreFileKit';
 
 @Entry
 @Component
@@ -11,7 +10,6 @@ struct Index {
   private imageSource: image.ImageSource | undefined = undefined;
   @State selectedImage: PixelMap | undefined = undefined;
   @State dataValues: string = '';
-
 
   build() {
     Column() {
@@ -44,7 +42,15 @@ struct Index {
         .width('80%')
         .margin(10)
         .onClick(() => {
-          this.recognizeText();
+          ImageOCRUtil.recognizeText(this.selectedImage, (content: string) => {
+            if (!CommonUtils.isEmpty(content)) {
+              this.dataValues = content;
+            }
+
+            // 释放内存空间
+            this.imageSource?.release();
+            this.selectedImage?.release();
+          });
         })
     }
     .width('100%')
@@ -53,7 +59,7 @@ struct Index {
   }
 
   private async selectImage() {
-    let uri = await this.openAlbum();
+    let uri = await ImageOCRUtil.openAlbum();
     if (uri === undefined) {
       hilog.error(0x0000, 'OCR', 'Failed to get the uri of photo.')
       return;
@@ -62,60 +68,12 @@ struct Index {
     this.loadImage(uri);
   }
 
-  /**
-   * 打开相册选择照片
-   * @returns 异步返回照片
-   */
-  private openAlbum(): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      let photoPicker = new picker.PhotoViewPicker;
-      photoPicker.select({
-        MIMEType: picker.PhotoViewMIMETypes.IMAGE_TYPE,
-        maxSelectNumber: 1
-      }).then((res: picker.PhotoSelectResult) => {
-        resolve(res.photoUris[0]);
-      }).catch((err: BusinessError) => {
-        hilog.error(0x0000, "OCR", `Failed to get photo uri, code: ${err.code}, message: ${err.message}`)
-        resolve('')
-      })
-    })
-  }
-
-  private loadImage(name: string) {
+  loadImage(path: string) {
     setTimeout(async () => {
-      let fileSource = await fileIo.open(name, fileIo.OpenMode.READ_ONLY);
+      let fileSource = await fileIo.open(path, fileIo.OpenMode.READ_ONLY);
       this.imageSource = image.createImageSource(fileSource.fd);
       this.selectedImage = await this.imageSource.createPixelMap();
     })
   }
 
-  private async recognizeText() {
-    if (!this.selectedImage) {
-      hilog.error(0x0000, 'OCR', 'the image is not existed')
-      return;
-    }
-
-    let visionInfo: textRecognition.VisionInfo = {
-      pixelMap: this.selectedImage
-    };
-
-    let textConfiguration: textRecognition.TextRecognitionConfiguration = {
-      isDirectionDetectionSupported: false
-    };
-
-    textRecognition.recognizeText(visionInfo, textConfiguration, (error: BusinessError, data: textRecognition.TextRecognitionResult) => {
-      // 识别成功，获取结果
-      if (error.code == 0) {
-        let recognitionRes = data.toString();
-        // 将识别结果更新到Text中显示
-        this.dataValues = data.value;
-      }
-
-      // 释放数据
-      if (this.selectedImage && this.imageSource) {
-        this.selectedImage.release();
-        this.imageSource.release();
-      }
-    });
-  }
 }
