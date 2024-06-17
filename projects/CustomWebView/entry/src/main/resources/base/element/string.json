@@ -1,0 +1,84 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "Web"
+    },
+    {
+      "name": "promptsLocal",
+      "value": "Local H5 applet"
+    },
+    {
+      "name": "promptsCloud",
+      "value": "Cloud H5 applet"
+    },
+    {
+      "name": "loadLocalH5",
+      "value": "Load the local H5"
+    },
+    {
+      "name": "loadCloudH5",
+      "value": "Load cloud H5"
+    },
+    {
+      "name": "loadVue",
+      "value": "Load Vue"
+    },
+    {
+      "name": "return_home",
+      "value": "return"
+    },
+    {
+      "name": "loadCloudVue",
+      "value": "Load Cloud Vue"
+    },
+    {
+      "name": "loadInterceptVue",
+      "value": "Load Intercept Vue"
+    },
+    {
+      "name": "textValue",
+      "value": "These are web components"
+    },
+    {
+      "name": "local",
+      "value": "(Local)"
+    },
+    {
+      "name": "online",
+      "value": "(online)"
+    },
+    {
+      "name": "btnValue",
+      "value": "Click on the raffle"
+    },
+    {
+      "name": "prompts",
+      "value": "Sweepstakes App"
+    },
+    {
+      "name": "web_alert_dialog_button_value",
+      "value": "Confirm"
+    },
+    {
+      "name": "web_width",
+      "value": "93.3%"
+    },
+    {
+      "name": "internet_err",
+      "value": "Failed to load the network."
+    },
+    {
+      "name": "reason",
+      "value": "Used to initiate network data requests."
+    }
+  ]
+}
