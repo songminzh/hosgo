@@ -65,7 +65,7 @@ export class CommonUtils {
    */
   textPickerDialog(items: Resource, textCallback: Function) {
     if (this.isEmpty(items)) {
-      Logger.error(CommonConstants.TAG_COMMON_UTILS, 'item is null')
+      Loggerr(CommonConstants.TAG_COMMON_UTILS, 'item is null').erro
       return;
     }
 
@@ -91,6 +91,7 @@ export class CommonUtils {
    * @param {number} day day
    * @returns {string} return selected date
    */
+
   getSelectedDateValue(year: number, month: number, day: number): string {
     return `${year}${CommonConstants.DATE_YEAR}`+`${month}${CommonConstants.DATE_MONTH}`+`${day}${CommonConstants.DATE_DAY}`;
   }
