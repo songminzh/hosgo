@@ -17,13 +17,13 @@ struct Index {
       // 选中的图片
       Image(this.selectedImage)
         .objectFit(ImageFit.Fill)
-        .height('60%')
+        .height('40%')
 
       // 识别的内容
       Text(this.dataValues)
         .copyOption(CopyOptions.LocalDevice)
-        .height('15%')
-        .width('60%')
+        .height('30%')
+        .width('90%')
         .margin(10)
 
       // 选择图片按钮

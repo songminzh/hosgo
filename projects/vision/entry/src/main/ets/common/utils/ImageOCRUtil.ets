@@ -34,6 +34,8 @@ export class ImageOCRUtil {
         let recognitionRes = data.value.toString();
         // 将识别结果返回
         resultCallback(recognitionRes);
+      } else {
+        console.error("获取失败：" + error.code + error.data);
       }
     });
   }

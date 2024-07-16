@@ -98,21 +98,22 @@ struct XComponentPage {
             let imageArrayBuffer = imgComponent.byteBuffer as ArrayBuffer;
             console.log("得到图片数据:" + JSON.stringify(imageArrayBuffer))
             console.log("图片数据长度:" + imageArrayBuffer.byteLength)
-            let imageSource: image.ImageSource = image.createImageSource(imageArrayBuffer);
 
-            // 转换图片格式为PixelMap，并识别其中的文字
-            try {
-              let option: image.DecodingOptions = {
-                desiredSize: { width: 1920, height: 1080 }
-              }
-              let imagePm = await imageSource.createPixelMap(option);
-              ImageOCRUtil.recognizeText(imagePm, (res: string) => {
-                console.info(res);
-              });
-
-            } catch (err) {
-              console.error(JSON.stringify(err))
+            let opts: image.InitializationOptions = {
+              editable: true,
+              pixelFormat: 3,
+              size: { height: 320, width: 320 }
             }
+            image.createPixelMap(imageArrayBuffer, opts).then((pixelMap: image.PixelMap) => {
+              console.info('Succeeded in creating pixelmap.');
+
+              ImageOCRUtil.recognizeText(pixelMap, (res: string) => {
+                console.info("识别结果:" + res);
+              });
+            }).catch((error: BusinessError) => {
+              console.error('Failed to create pixelmap.');
+            })
+
           } else {
             console.error('byteBuffer is null');
           }
@@ -168,9 +169,6 @@ struct XComponentPage {
         controller: this.mXComponentController
       })// 插件加载完成时回调事件
         .onLoad(() => {
-          // 设置Surface宽高（1920*1080），预览尺寸设置参考前面 previewProfilesArray 获取的当前设备所支持的预览分辨率大小去设置
-          // 预览流与录像输出流的分辨率的宽高比要保持一致
-          this.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 });
           // 获取Surface ID
           this.xComponentSurfaceId = this.mXComponentController.getXComponentSurfaceId();
         })// 插件卸载完成时回调事件
