@@ -1,11 +1,24 @@
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "certpath": "/Users/zm/.ohos/config/default_vision_FcNbVt4Bnms3EIxroKYUwmo1O4M6eC3M4P9TxJRLq0U=.cer",
+          "storePassword": "0000001B45CF751C69FA661A2892B97B309F66D0A1A2F0FC02B2818FE3B6547A5D061AC187492040692215",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001B3EB882E2D9CCE52E78CDBEE8D85CBB856EB21F48020D56B3E963F39D78665DA09F25A6C0F36FAB",
+          "profile": "/Users/zm/.ohos/config/default_vision_FcNbVt4Bnms3EIxroKYUwmo1O4M6eC3M4P9TxJRLq0U=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "/Users/zm/.ohos/config/default_vision_FcNbVt4Bnms3EIxroKYUwmo1O4M6eC3M4P9TxJRLq0U=.p12"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
-        "compileSdkVersion": "4.1.0(11)",
         "compatibleSdkVersion": "4.1.0(11)",
         "runtimeOS": "HarmonyOS",
       }

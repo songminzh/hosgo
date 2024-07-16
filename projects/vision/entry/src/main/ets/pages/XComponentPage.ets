@@ -4,7 +4,7 @@ import common from '@ohos.app.ability.common';
 import display from '@ohos.display';
 import { image } from '@kit.ImageKit';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
-import ImageOCRUtil from '../common/utils/ImageOCRUtil';
+import { ImageOCRUtil } from '../common/utils/ImageOCRUtil';
 
 
 @Entry
@@ -130,7 +130,7 @@ struct XComponentPage {
     atManager.requestPermissionsFromUser(context, ["ohos.permission.CAMERA"]).then((data) => {
 
       let grantStatus: Array<number> = data.authResults;
-      let length: number = grantStatus.length;
+      // let length: number = grantStatus.length;
 
       if (grantStatus[0] === 0) {
         // 用户授权，可以继续访问目标操作

@@ -4,5 +4,10 @@
       "name": "app_name",
       "value": "vision"
     }
+    ,
+    {
+      "name": "permission_reason_camera",
+      "value": "使用相机用于获取实时图像信息。"
+    }
   ]
 }

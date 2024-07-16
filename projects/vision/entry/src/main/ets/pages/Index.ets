@@ -1,8 +1,9 @@
 import { image } from '@kit.ImageKit'
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import ImageOCRUtil from '../common/utils/ImageOCRUtil';
-import CommonUtils from '../common/utils/CommonUtils';
+import { ImageOCRUtil } from '../common/utils/ImageOCRUtil';
+import { CommonUtils } from '../common/utils/CommonUtils';
 import { fileIo } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 @Entry
 @Component
@@ -59,7 +60,8 @@ struct Index {
   }
 
   private async selectImage() {
-    let uri = await ImageOCRUtil.openAlbum();
+    let context = getContext(this) as common.Context;
+    let uri = await ImageOCRUtil.openAlbum(context);
     if (uri === undefined) {
       hilog.error(0x0000, 'OCR', 'Failed to get the uri of photo.')
       return;

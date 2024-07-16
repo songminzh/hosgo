@@ -2,6 +2,7 @@ import { textRecognition } from '@kit.CoreVisionKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { picker } from '@kit.CoreFileKit';
+import { common } from '@kit.AbilityKit';
 
 export class ImageOCRUtil {
 
@@ -12,7 +13,7 @@ export class ImageOCRUtil {
    * @param resultCallback 结果返回
    * @returns
    */
-  async recognizeText(image:  PixelMap | undefined, resultCallback: Function) {
+  static async recognizeText(image:  PixelMap | undefined, resultCallback: Function) {
     // 非空判断
     if (!image || image === undefined) {
       hilog.error(0x0000, 'OCR', 'the image is not existed');
@@ -30,7 +31,7 @@ export class ImageOCRUtil {
     textRecognition.recognizeText(visionInfo, textConfiguration, (error: BusinessError, data: textRecognition.TextRecognitionResult) => {
       // 识别成功，获取结果
       if (error.code == 0) {
-        let recognitionRes = data.toString();
+        let recognitionRes = data.value.toString();
         // 将识别结果返回
         resultCallback(recognitionRes);
       }
@@ -42,9 +43,9 @@ export class ImageOCRUtil {
    * 打开相册选择图片
    * @returns 异步返回图片URI
    */
-  openAlbum(): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
-      let photoPicker = new picker.PhotoViewPicker;
+  static openAlbum(context: common.Context): Promise<string> {
+    return new Promise<string>((resolve, _) => {
+      let photoPicker = new picker.PhotoViewPicker(context);
       photoPicker.select({
         MIMEType: picker.PhotoViewMIMETypes.IMAGE_TYPE,
         maxSelectNumber: 1
@@ -57,5 +58,3 @@ export class ImageOCRUtil {
     })
   }
 }
-
-export default new ImageOCRUtil();

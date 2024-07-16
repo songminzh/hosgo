@@ -7,7 +7,7 @@ export class CommonUtils {
    * @param {object} obj
    * @return {boolean} true(empty)
    */
-  isEmpty(obj: object | string): boolean {
+  static isEmpty(obj: object | string): boolean {
     return obj === undefined || obj === null || obj === '';
   }
 
@@ -16,12 +16,9 @@ export class CommonUtils {
    * @param arr array
    * @returns {boolean} result
    */
-  isEmptyArr(arr: Array<object | string>): boolean {
-    return this.isEmpty(arr) || arr.length === 0;
+  static isEmptyArr(arr: Array<object | string>): boolean {
+    return CommonUtils.isEmpty(arr) || arr.length === 0;
   }
 
 }
-
-export default new CommonUtils();
-
 
