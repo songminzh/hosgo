@@ -1,7 +1,7 @@
 import { PageUtils } from '../utils/PageUtils';
 
 @Component
-export struct Page2 {
+export struct Page1 {
   @Consume('pageStack') pageStack: NavPathStack;
 
   build() {
@@ -10,7 +10,7 @@ export struct Page2 {
         Blank(50)
         Button("下一页")
           .onClick(() => {
-            this.pageStack.pushPathByName('Page3', "C", (popInfo) => {
+            this.pageStack.pushPathByName('Page2', "C", (popInfo) => {
               console.log('Pop page name is: ' + popInfo.info.name + ', result: ' + JSON.stringify(popInfo.result))
             });
           })
@@ -22,12 +22,12 @@ export struct Page2 {
         Blank(50)
         Button("替换 By name")
           .onClick(() => {
-            this.pageStack.replacePathByName("Page1", "替换到Page1");
+            this.pageStack.replacePathByName("Page0", "替换到Page0");
           })
         Blank(50)
         Text(PageUtils.getPageStackInfo(this.pageStack))
       }
     }
-    .title('Page2')
+    .title('Page1')
   }
 }

@@ -1,7 +1,7 @@
 import { PageUtils } from '../utils/PageUtils';
 
 @Component
-export struct Page3 {
+export struct Page2 {
   @Consume('pageStack') pageStack: NavPathStack;
 
   build() {
@@ -21,6 +21,6 @@ export struct Page3 {
         Text(PageUtils.getPageStackInfo(this.pageStack))
       }
     }
-    .title("Page3")
+    .title("Page2")
   }
 }
