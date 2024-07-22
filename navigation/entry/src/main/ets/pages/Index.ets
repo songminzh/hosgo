@@ -24,33 +24,7 @@ struct Index {
       Page2()
     }
   }
-
-
-  // 自定义TabBar
-  @Builder
-  tabBarBuilder(title: string, index: number, normalIcon: Resource, selectedIcon: Resource) {
-    Column() {
-      Image(this.currentIndex === index ? selectedIcon : normalIcon)
-        .width(24)
-        .height(24)
-      Text(title)
-        .fontFamily('HarmonyHeiTi-Medium')
-        .fontSize(10)
-        .fontColor(this.currentIndex === index ? '@0A59F7' : 'rgba(0,0,0,0.60)')
-        .textAlign(TextAlign.Center)
-        .lineHeight(14)
-        .fontWeight(500)
-    }
-    .width('100%')
-    .height('100%')
-    .justifyContent(FlexAlign.Center)
-    .alignItems(HorizontalAlign.Center)
-    .onClick(() => {
-      this.currentIndex = index;
-      this.tabsController.changeIndex(index)
-    })
-  }
-
+  
   build() {
     Navigation(this.pageStack) {
       Column() {
